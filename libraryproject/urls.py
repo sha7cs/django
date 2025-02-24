@@ -23,6 +23,6 @@ urlpatterns = [
     path('' , apps.bookmodule.views.index ),
     # path('index2/<int:val1>/', apps.bookmodule.views.index2),  # Task 3
     path('books/', include("apps.bookmodule.urls")),  # Task 6
-    path('users/', include("apps.usermodule.urls"))  # Task 6
+    path('users/', include("apps.usermodule.urls")), # Task 6
 
 ]
