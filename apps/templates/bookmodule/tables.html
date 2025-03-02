@@ -1,0 +1,72 @@
+{%load static%}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'main.css' %}">
+    </head>
+    <body>
+        <p class="tableText"><strong>Table 1: Table <br>of fruits and <br>their prices</strong></p>
+        <table class="table1">
+            <tr>
+              <th>Fruit</th>
+              <th>price</th>
+            </tr>
+            <tr>
+                <td>Apple</td>
+                <td>$0.25</td>
+            </tr>
+            <tr>
+                <td>orange</td>
+                <td>$0.50</td>
+
+            </tr>
+            <tr>
+                <td>Banana</td>
+                <td>$1.00</td>
+
+            </tr>
+            <tr>
+                <td>Pineapple</td>
+                <td>$2.00</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td>$3.75</td>
+            </tr>
+        </table>
+
+        <p class="tableText">Table 2:more complex table</p>
+        <table class="table2">
+            <tr>
+              <th rowspan="2"><img src="{% static 'sahara.jpg.webp' %}" width="300" height="200"></th>
+              <th colspan="5">camelid comparsion <br> approximate as of 6/2011</th>
+            </tr>
+            <tr style="font-weight: bold;">
+                <td># of humps</td>
+                <td>Indigenous region</td>
+                <td>Spits?</td>
+                <td>Product wool?</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Dromedary</td>
+                <td>1</td>
+                <td>Arabian Peninsula</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">camels (bactrian)</td>
+                <td>2</td>
+                <td>Africa/Asia</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Llamas</td>
+                <td>1</td>
+                <td>Andes Mountains</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+
+    </body>
+</html>
