@@ -5,6 +5,14 @@
 {% block title %} list books{% endblock title %}
  
 {% block content %}
+
+{% for obj in books %}
+
+ID: {{obj.id}}, Title: {{obj.title}}
+<hr>
+
+{% endfor %}
+
     <h1>List of Books</h1>
     <a href="{% url 'books.view_one_book' bookId=1 %}"><h2>Internet & World Wide Web How to Program</h2></a>
     <a href="{% url 'books.view_one_book' bookId=1 %}"><img src="{% static 'book.jpg' %}" alt="Book1 img desc" width="200" height="200"></a>
