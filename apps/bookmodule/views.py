@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import Q
 from django.db.models import Count, Sum, Avg, Max, Min
-from .models import Student
+from .models import Student, Department, Course, Address, Card
 from django.db.models import Count
 
 # Task 1
@@ -145,3 +145,20 @@ def task5(request):
 def task7(request):
     stats = Student.objects.values('address__city').annotate(student_count=Count('id'))
     return render(request, 'bookmodule/task7.html', {'stats': stats})
+
+def lab9_task1(request):
+    departments = Department.objects.annotate(student_count=Count('student'))
+    return render(request,'bookmodule/lab9_task1.html',{'departments':departments})
+
+def lab9_task2(request):
+    courses = Course.objects.annotate(student_count=Count('student'))
+    return render(request,'bookmodule/lab9_task2.html',{'courses':courses})
+
+def lab9_task3(request):
+    result = []
+    departments = Department.objects.annotate(min_student_id=Min('student__id'))
+    return render(request,'bookmodule/lab9_task3.html',{'departments':departments})
+
+def lab9_task4(request):
+  departments = ( Department.objects.annotate(student_count=Count('student')).filter(student_count__gt=2).order_by('-student_count'))
+  return render(request,'bookmodule/lab9_task4.html',{'departments':departments})

@@ -1,0 +1,18 @@
+<h2>Departments and Number of Students</h2>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Department Name</th>
+      <th>Number of Students</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for dept in departments %}
+      <tr>
+        <td>{{ dept.name }}</td>
+        <td>{{ dept.student_count }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

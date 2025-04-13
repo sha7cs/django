@@ -1,0 +1,13 @@
+<h2>Departments with Minimum Student ID</h2>
+<table  border="1" >
+  <tr>
+    <th>Department Name</th>
+    <th>Min Student ID</th>
+  </tr>
+  {% for dept in departments %}
+    <tr>
+      <td>{{ dept.name }}</td>
+      <td>{{ dept.min_student_id}}</td>
+    </tr>
+  {% endfor %}
+</table>

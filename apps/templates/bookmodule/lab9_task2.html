@@ -1,0 +1,18 @@
+<h2>Courses and Number of Registered Students</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Course Name</th>
+      <th>Number of Students</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for course in courses %}
+      <tr>
+        <td>{{ course.name }}</td>
+        <td>{{ course.student_count }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
