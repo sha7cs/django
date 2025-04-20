@@ -22,6 +22,12 @@ urlpatterns = [
     path('lab9/task1', views.lab9_task1 ,name='lab9-task1'),
     path('lab9/task2', views.lab9_task2 ,name='lab9-task2'),
     path('lab9/task3', views.lab9_task3 ,name='lab9-task3'),
-    path('lab9/task4', views.lab9_task4 ,name='lab9-task4')
+    path('lab9/task4', views.lab9_task4 ,name='lab9-task4'),
+    path('lab9_part1/list', views.lab9_part1_listbooks ,name='lab9-list'),
+    path('lab9_part1/add', views.lab9_part1_addbook ,name='lab9-add'),
+    path('lab9_part1/edit/<int:book_id>', views.lab9_part1_editbook ,name='lab9-edit'),
+    path('lab9_part1/delete/<int:book_id>', views.lab9_part1_deletebook ,name='lab9-delete'),
+    path('lab9_part1/add-form/', views.lab9_part1_add_form ,name='lab9-add-form'),
+    path('lab9_part1/edit-form/<int:book_id>', views.lab9_part1_edit_form ,name='lab9-edit-form'),
 
 ]

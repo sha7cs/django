@@ -1,0 +1,29 @@
+<!-- add_book.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Book</title>
+</head>
+<body>
+    <h1>Add a New Book</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label >Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label >Author:</label><br>
+        <input type="text" id="author" name="author" required><br><br>
+
+        <label >price:</label><br>
+        <input type="number" id="price" name="price" required><br><br>
+
+
+        <label >edition:</label><br>
+        <input type="number" id="edition" name="edition" required><br><br>
+
+        <button type="submit">Add Book</button>
+    </form>
+    <br>
+    <a href="{% url 'lab9-list' %}">Back to list</a>
+</body>
+</html>

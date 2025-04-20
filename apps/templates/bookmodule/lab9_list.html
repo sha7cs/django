@@ -1,0 +1,41 @@
+<body>
+    <h1>Books</h1>
+    <a href="{% url 'lab9-add' %}">Add Book</a>
+    <a href="{% url 'lab9-add-form' %}">Add Book (form)</a>
+
+    {% if books %}
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>price</th>
+                <th>edition</th>
+                <th>Actions</th>
+                <th>Actions-form</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.price }}</td>
+                <td>{{ book.edition }}</td>
+
+                <td>
+                    <a href="{% url 'lab9-edit' book.id %}">Edit</a> |
+                    <a href="{% url 'lab9-delete' book.id %}">Delete</a>
+                </td>
+                <td>
+                    <a href="{% url 'lab9-edit-form' book.id %}">Edit</a> 
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No books available.</p>
+    {% endif %}
+</body>
+</html>
