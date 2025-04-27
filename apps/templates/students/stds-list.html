@@ -1,0 +1,31 @@
+<body>
+    <h1>Students</h1>
+    <a href="{% url 'lab11-add' %}">Add student</a>
+
+    {% if students %}
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.address }}</td>
+                <td>
+                    <a href="{% url 'lab11-edit' student.id %}">Edit</a> |
+                    <a href="{% url 'lab11-delete' student.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No students available.</p>
+    {% endif %}
+</body>
+</html>

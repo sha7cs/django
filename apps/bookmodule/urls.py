@@ -29,5 +29,17 @@ urlpatterns = [
     path('lab9_part1/delete/<int:book_id>', views.lab9_part1_deletebook ,name='lab9-delete'),
     path('lab9_part1/add-form/', views.lab9_part1_add_form ,name='lab9-add-form'),
     path('lab9_part1/edit-form/<int:book_id>', views.lab9_part1_edit_form ,name='lab9-edit-form'),
-
+    #lab11
+    path('lab11/list/students', views.lab11_list ,name='lab11-list'),
+    path('lab11/add/', views.lab11_add ,name='lab11-add'),
+    path('lab11/edit/<int:std_id>', views.lab11_edit ,name='lab11-edit'),
+    path('lab11/delete/<int:std_id>', views.lab11_delete ,name='lab11-delete'),
+    #lab 11 task 2
+    path('lab12/list/students', views.lab12_list, name='lab12-list'),
+    path('lab12/add/', views.lab12_add, name='lab12-add'),
+    path('lab12/edit/<int:std_id>', views.lab12_edit, name='lab12-edit'),
+    path('lab12/delete/<int:std_id>', views.lab12_delete, name='lab12-delete'),
+    #lab 11 task 3
+    path('upload/', views.upload_image, name='image-upload'),
+    path('images/', views.list_images, name='image-list'),
 ]

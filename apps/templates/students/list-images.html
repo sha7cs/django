@@ -1,0 +1,15 @@
+
+<h1>Uploaded Images</h1>
+
+<a href="{% url 'image-upload' %}">Upload New Image</a>
+
+<div>
+    {% if images %}
+        {% for image in images %}
+                <h3>{{ image.name }}</h3>
+                <img src="{{ image.image.url }}" style="max-width: 300px;">
+        {% endfor %}
+    {% else %}
+        <p>No images uploaded yet.</p>
+    {% endif %}
+</div>

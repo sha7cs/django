@@ -8,7 +8,8 @@ class Book(models.Model):
 
 class Address(models.Model):
     city = models.CharField(max_length=100)
-
+    def __str__(self):
+            return self.city
 class Card(models.Model):
     card_number = models.CharField(max_length=20, unique=True)
 
@@ -27,3 +28,25 @@ class Student(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     courses = models.ManyToManyField(Course)
 
+class Student1(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    
+#lab 11 task 2
+
+class Address2(models.Model):
+    city = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.city
+
+class Student2(models.Model):
+    name = models.CharField(max_length=100)
+    addresses = models.ManyToManyField(Address2, related_name='addresses')
+
+    def __str__(self):
+        return self.name
+
+class Images(models.Model):
+    image=models.FileField(upload_to="images/")
+    name = models.CharField(max_length=225)

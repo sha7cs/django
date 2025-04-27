@@ -1,0 +1,9 @@
+
+    <h1>Upload New Image</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    <a href="{% url 'image-list' %}">Go to Image List</a>

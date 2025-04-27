@@ -1,0 +1,17 @@
+<!-- add_book.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add student</title>
+</head>
+<body>
+    <h1>Add a New student</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Add student</button>
+    </form>
+    <br>
+    <a href="{% url 'lab12-list' %}">Back to list</a>
+</body>
+</html>

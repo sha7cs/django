@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit student</title>
+</head>
+<body>
+    <h1>Edit Student info</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Update student</button>
+    </form>
+    <br>
+    <a href="{% url 'lab11-list' %}">Back to list</a>
+</body>
+</html>

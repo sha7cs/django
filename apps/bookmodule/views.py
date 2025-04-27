@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import Q
 from django.db.models import Count, Sum, Avg, Max, Min
-from .models import Student, Department, Course, Address, Card
+from .models import Student, Department, Course, Address, Card,Student2
 from django.db.models import Count
 from django.shortcuts import redirect
+from .forms import ImageForm
 # Task 1
 # def index(request):
 #     return HttpResponse("Hello, world!")
@@ -207,7 +208,7 @@ def lab9_part1_deletebook(request,book_id):
     return render(request, 'bookmodule/lab9_delete.html',{'book':book})   
 
 
-from .forms import Book_form
+from .forms import Book_form,Student1Form,Student2Form
 
 
 def lab9_part1_add_form(request):
@@ -235,3 +236,91 @@ def lab9_part1_edit_form(request, book_id):
 
     return render(request, 'bookmodule/lab9_edit_form.html', {'form': form, 'book': book})
 
+from .models import Student1
+
+def lab11_list(request):
+    students = Student1.objects.all
+    return render(request,'students/stds-list.html',{'students':students})
+
+def lab11_add(request):
+    if request.method == 'POST':
+        form = Student1Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lab11-list')
+    else:
+        form = Student1Form()
+
+    return render(request, 'students/add-student.html', {'form': form})
+
+def lab11_edit(request, std_id):
+    student = Student1.objects.get(id=std_id)
+
+    if request.method == 'POST':
+        form = Student1Form(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('lab11-list')
+    else:
+        form = Student1Form(instance=student)
+    return render(request, 'students/edit-student.html', {'form': form, 'book': student})
+
+def lab11_delete(request,std_id):
+    student = Student1.objects.get(id=std_id)
+    if request.method =='POST':
+        student.delete()
+        return redirect('lab11-list')  
+    return render(request, 'students/delete-students.html',{'student':student})   
+
+
+# the same lab but task 2
+def lab12_list(request):
+    students = Student2.objects.all()
+    return render(request, 'students/stds2-list.html', {'students': students})
+
+def lab12_add(request):
+    if request.method == 'POST':
+        form = Student2Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lab12-list')
+    else:
+        form = Student2Form()
+
+    return render(request, 'students/add-student2.html', {'form': form})
+
+def lab12_edit(request, std_id):
+    student = Student2.objects.get(id=std_id)
+
+    if request.method == 'POST':
+        form = Student2Form(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('lab12-list')
+    else:
+        form = Student2Form(instance=student)
+    return render(request, 'students/edit-student2.html', {'form': form, 'student': student})
+
+def lab12_delete(request, std_id):
+    student = Student2.objects.get(id=std_id)
+    if request.method == 'POST':
+        student.delete()
+        return redirect('lab12-list')
+    return render(request, 'students/delete-students2.html', {'student': student})
+
+
+from .models import Images
+def list_images(request):
+    images = Images.objects.all()
+    return render(request, 'students/list-images.html', {'images': images})
+
+def upload_image(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('image-list')
+    else:
+        form = ImageForm()
+
+    return render(request, 'students/add-image.html', {'form': form})
