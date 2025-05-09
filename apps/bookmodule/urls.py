@@ -42,4 +42,9 @@ urlpatterns = [
     #lab 11 task 3
     path('upload/', views.upload_image, name='image-upload'),
     path('images/', views.list_images, name='image-list'),
+    # lab 12 
+    path('login/', views.user_login, name='login'),
+    path('register/', views.registerUser, name='register'),
+    path('logout/', views.logoutUser, name='logout'),
+
 ]

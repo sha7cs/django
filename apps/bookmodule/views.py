@@ -6,6 +6,8 @@ from .models import Student, Department, Course, Address, Card,Student2
 from django.db.models import Count
 from django.shortcuts import redirect
 from .forms import ImageForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Task 1
 # def index(request):
 #     return HttpResponse("Hello, world!")
@@ -113,7 +115,6 @@ def complex_query(request):
 def task1(request):
     books = Book.objects.filter(Q(price__lte=80)) # have price less than or equal 80 
     return render(request,'bookmodule/Task1.html', {'books': books})
-
 def task2(request):
     books = Book.objects.filter(
         Q(edition__gt=3) & (Q(title__icontains="co") | Q(author__icontains="co"))
@@ -240,6 +241,10 @@ from .models import Student1
 
 def lab11_list(request):
     students = Student1.objects.all
+    student = Student1.objects.filter(title__icontains='ar')
+    student= Student1.objects.filter(name__isnull=False)
+    student = Student.objects.filter(age__gte=2).exclude(price__lte=100)
+    print(student)
     return render(request,'students/stds-list.html',{'students':students})
 
 def lab11_add(request):
@@ -274,10 +279,12 @@ def lab11_delete(request,std_id):
 
 
 # the same lab but task 2
+@login_required(login_url='login')
 def lab12_list(request):
     students = Student2.objects.all()
     return render(request, 'students/stds2-list.html', {'students': students})
 
+@login_required(login_url='login')
 def lab12_add(request):
     if request.method == 'POST':
         form = Student2Form(request.POST)
@@ -289,6 +296,7 @@ def lab12_add(request):
 
     return render(request, 'students/add-student2.html', {'form': form})
 
+@login_required(login_url='login')
 def lab12_edit(request, std_id):
     student = Student2.objects.get(id=std_id)
 
@@ -301,6 +309,7 @@ def lab12_edit(request, std_id):
         form = Student2Form(instance=student)
     return render(request, 'students/edit-student2.html', {'form': form, 'student': student})
 
+@login_required(login_url='login')
 def lab12_delete(request, std_id):
     student = Student2.objects.get(id=std_id)
     if request.method == 'POST':
@@ -310,10 +319,13 @@ def lab12_delete(request, std_id):
 
 
 from .models import Images
+
+@login_required(login_url='login')
 def list_images(request):
     images = Images.objects.all()
     return render(request, 'students/list-images.html', {'images': images})
 
+@login_required(login_url='login')
 def upload_image(request):
     if request.method == 'POST':
         form = ImageForm(request.POST,request.FILES)
@@ -324,3 +336,40 @@ def upload_image(request):
         form = ImageForm()
 
     return render(request, 'students/add-image.html', {'form': form})
+
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import SignUpForm, CustomLoginForm
+from django.contrib.auth import logout
+
+def registerUser(request):
+  if request.method == "POST":
+    form = SignUpForm(request.POST)
+    if form.is_valid():
+        obj = form.save()
+        messages.success(request, 'Login successfully')
+        return redirect('login')
+  else:
+        form = SignUpForm()
+  return render(request, "students/register.html", {"form": form})
+
+from django.contrib.auth import login as auth_login
+def user_login(request):
+    if request.method == 'POST':
+        form = CustomLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            auth_login(request, user)
+            messages.success(request, 'Login successfully')
+            return redirect('/')
+    else:
+        form = CustomLoginForm()
+    return render(request, 'students/login.html', {'form': form})
+
+@login_required(login_url='login')
+def logoutUser(request):
+    if request.method == 'POST':
+        logout(request)
+        messages.success(request, 'logout successfully')
+        return redirect('/') 
+    return render(request,'students/logout.html')

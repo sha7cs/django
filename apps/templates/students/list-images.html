@@ -1,5 +1,8 @@
 
 <h1>Uploaded Images</h1>
+{% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+{% endfor %}
 
 <a href="{% url 'image-upload' %}">Upload New Image</a>
 
